@@ -142,7 +142,7 @@ router.get('/seats/:avail/:id',auth.simple,async(req,res)=>{
 
 })
 /** Used to create seat information */
-router.post('/seats', auth.enhance,async(req, res) => {
+router.post('/seats', auth.simple,async(req, res) => {
   let body=req.body.seat
   const cinemaseat = new CinemaSeat(req.body.seat);
   console.log(cinemaseat)
