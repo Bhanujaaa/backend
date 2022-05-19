@@ -9,7 +9,7 @@ const Reservation = require('../models/reservation');
 
 
 const router = new express.Router();
-router.get('/cinemas',auth.simple,(req,res)=>{
+router.get('/cinemas',(req,res)=>{
  
   Cinema.find({}).populate('movieId').exec((err,docs)=>{
     if(err)throw (err);

@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 //   useNewUrlParser: true,
 //   useCreateIndex: true,
 // });
-const URI ="mongodb://localhost/projectdb";
+const URI ="mongodb://0.0.0.0:27017/projectdb";
 
 mongoose.connect(URI, {
 
