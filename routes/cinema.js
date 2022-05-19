@@ -9,7 +9,7 @@ const Reservation = require('../models/reservation');
 
 
 const router = new express.Router();
-router.get('/cinemas',(req,res)=>{
+router.get('/cinemas',async(req,res)=>{
  
   Cinema.find({}).populate('movieId').exec((err,docs)=>{
     if(err)throw (err);
@@ -52,10 +52,10 @@ router.patch('/cinemas/:id',auth.enhance, async (req, res) => {
     return res.status(400).send(e);
   }
 });
-router.get('/cinemas/id/:id',auth.simple,async (req, res) => {
+router.get('/cinemas/ide/:id',auth.simple,async (req, res) => {
   const _id = req.params.id;
   try {
-    const cinema = await Cinema.findById(_id).populate('moviesId').populate('city');
+    const cinema = await Cinema.find({_id:_id}).populate('movieId').populate('city');
     if (!cinema) return res.sendStatus(404);
     return res.send(cinema);
   } catch (e) {
