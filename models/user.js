@@ -31,6 +31,9 @@ const userSchema = Schema(
     phone: {
       type: String,
     },
+    image:{
+      type:String
+    }
     
   },
 );

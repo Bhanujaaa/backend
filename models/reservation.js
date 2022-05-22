@@ -11,6 +11,9 @@ const reservationSchema = new Schema({
   ref:'Showtime',
   // required:true
  },
+ seatNames:{
+  type:Schema.Types.Mixed
+ },
  seats:{
    type:Number
  },
