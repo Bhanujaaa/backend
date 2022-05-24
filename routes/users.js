@@ -51,6 +51,7 @@ router.post('/users/login', async (req, res) => {
     const user = await User.findByCredentials(email, password);
     const token = await user.generateAuthToken();
     const refresh=await user.generateRefreshToken();
+    console.log("you are logged in putty")
     res.send({ user, token,refresh });
   } catch (e) {
     res.status(400).send({

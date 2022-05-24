@@ -201,12 +201,13 @@ router.patch('/seats', auth.simple,(req, res) => {
 router.post('/seats/update',auth.simple,async(req,res)=>{
   const seatsAvailable=req.body.seat
   const _id=req.body.id
-  const cinema = await Cinema.findOneAndUpdate({_id: _id},{ $set: { seatsAvailable: seatsAvailable, isSelected:false }})
+  const cinema = await Cinema.findOneAndUpdate({_id: _id},{ $set: { seatsAvailable: seatsAvailable}})
   return res.json(cinema)
 })
 router.patch('/seats/free/f' ,async(req, res) => {
   console.log("hiii")
   console.log("inside the server")
+  console.log(req.body)
   Array.from(req.body).forEach((value) => {
       const id = value._id; 
       const selected = value.isSelected;
