@@ -201,7 +201,7 @@ router.patch('/seats', auth.simple,(req, res) => {
 router.post('/seats/update',auth.simple,async(req,res)=>{
   const seatsAvailable=req.body.seat
   const _id=req.body.id
-  const cinema = await Cinema.findOneAndUpdate({_id: _id},{ $set: { seatsAvailable: seatsAvailable }})
+  const cinema = await Cinema.findOneAndUpdate({_id: _id},{ $set: { seatsAvailable: seatsAvailable, isSelected:false }})
   return res.json(cinema)
 })
 router.patch('/seats/free/f' ,async(req, res) => {
