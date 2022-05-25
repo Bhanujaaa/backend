@@ -50,25 +50,7 @@ router.get('/movies/name/:moviename', auth.simple, async (req, res) => {
 router.get('/movies/:id', auth.simple, async (req, res) => {
   const _id = req.params.id;
 
-  try {
-    const cine=await Cinema.find({movieId:req.params.id})
-    const showtime=await Showtime.find({movieId:req.params.id})
-    const reserve=await Reservation.find({movieId:req.params.id})
-    for(let item of showtime){
-      const show=await Showtime.findById(item.id)
-      const u3=await show.delete()
-      
-    }
-    for(let item of cine){
-      const cinema=await Cinema.findById(item.id)
-      const u4=await cinema.delete()
-      
-    }
-    for(let item of reserve){
-      const res=await Reservation.findById(item.id)
-      const u4=await res.delete()
-      
-    }
+ try{
     const movie = await Movie.findById(_id);
     if (!movie) return res.sendStatus(404);
     return res.send(movie);
@@ -110,6 +92,25 @@ router.put('/movies/:id', auth.enhance, async (req, res) => {
 router.delete('/movies/:id', auth.enhance,async (req, res) => {
   const _id = req.params.id;
   try {
+    const cine=await Cinema.find({movieId:req.params.id})
+    const showtime=await Showtime.find({movieId:req.params.id})
+    const reserve=await Reservation.find({movieId:req.params.id})
+    for(let item of showtime){
+      const show=await Showtime.findById(item.id)
+      const u3=await show.delete()
+      
+    }
+    for(let item of cine){
+      const cinema=await Cinema.findById(item.id)
+      const u4=await cinema.delete()
+      
+    }
+    for(let item of reserve){
+      const res=await Reservation.findById(item.id)
+      const u4=await res.delete()
+      
+    }
+  
     const movie = await Movie.findByIdAndDelete(_id);
     return !movie ? res.sendStatus(404) : res.send(movie);
   } catch (e) {
