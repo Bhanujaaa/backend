@@ -96,9 +96,9 @@ router.patch('/showtimes/:id', auth.enhance, async (req, res) => {
   const _id = req.params.id;
   const updates = Object.keys(req.body.show);
   const allowedUpdates = ['startAt','movieId', 'seats','tickePrice','seatsAvailable','cinemaId'];
-  const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
+  // const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
 
-  if (!isValidOperation) return res.status(400).send({ error: 'Invalid updates!' });
+  // if (!isValidOperation) return res.status(400).send({ error: 'Invalid updates!' });
 
   try {
     const showtime = await Showtime.findOneAndUpdate({ _id:_id },req.body.show)
